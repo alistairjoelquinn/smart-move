@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
-const server = require('http').Server(app);
-const io = require('socket.io')(server, { origins: 'localhost:8080 192.168.50.70:8080' });
+const { init } = require ('./database/db');
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('./public'));
@@ -20,8 +19,20 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+app.get('/init', (req, res) => {
+    let numGen = [];
+    do {
+        let x = Math.floor(Math.random() * 78);
+        if(numGen.indexOf(x) === -1) numGen.push(x);
+    } while (numGen.length < 31);
+    console.log(numGen);
+    init(numGen).then(({ rows }) => {
+        res.json(rows);
+    }).catch(err => console.log(err));
+});
+
 app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(8080, () => console.log("I'm listening."));
+app.listen(8080, () => console.log("I'm listening."));

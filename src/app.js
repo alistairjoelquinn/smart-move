@@ -1,6 +1,5 @@
 import React from 'react'
 import Gameboard from './game-board'
-import { init } from './socket'
 import { createStore, applyMiddleware } from 'redux'
 import reduxPromise from 'redux-promise'
 import reducer from './reducer'
@@ -8,7 +7,6 @@ import { Provider } from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(reduxPromise)));
-init(store);
 
 export default function App() {
     return (
