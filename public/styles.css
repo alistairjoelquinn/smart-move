@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    background-color: dodgerblue;
+}
+
+.main-layout {
+    height: 100vh;
+    margin: none;
+    display: grid;
+    grid-template-columns: 3fr 6fr 3fr;
+    grid-template-rows: 1fr 4fr;
+    grid-template-areas:
+       "top top top"
+       "left center right";
+    
+}
+
+.main-logo {
+    grid-area: top;
+    font-size: 80px;
+    text-align: center;
+    color: blanchedalmond;
+    font-family: 'Fredoka One', cursive;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 2px 2px 3px tomato;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.sidebar-left {
+    grid-area: left;
+}
+
+#game-grid {
+    grid-area: center;
+    display: grid;
+    height: 500px;
+    grid-template: repeat(5, 1fr) / repeat(6, 1fr);
+    background-color: dodgerblue;
+    margin: 10px;
+    /* border: 1px solid black; */
+}
+
+.sidebar-left {
+    grid-area: right;
+}
+
+.box{
+    /* border: 1px solid black; */
+    position: relative;
+    right: 1px;
+    bottom: 40px;
+    align-self: center;
+    text-align: center;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    transition: all 0.7s ease;
+    font-family: 'Quicksand', sans-serif;
+    margin: 5px;
+}
+
+.box .yellow, .box .red {
+    position: absolute;
+    display: block;
+    border: 2px solid black;
+    transition: all 1s;
+    color: dimgray;
+    text-decoration: none;
+    width: 95%;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 4px;
+}
+
+.box .yellow {
+    background-color: yellow;
+    transform: translateZ(40px);
+    /* transform-origin: 100% 100%; */
+}
+
+.box .red {
+    background-color: red;
+    color: dimgray;
+    border: 2px solid black;
+    transform: rotateX(-90deg) translateZ(40px);
+}
+
+.box:hover {
+    transform: rotateX(90deg);
+    transform-origin: center 40px;
+}
