@@ -18,3 +18,10 @@ export async function squareSelected(id) {
         id: id
     };
 }
+
+export async function wordsUpdate(words) {
+    return {
+        type: "WORDS_UPDATE",
+        words: words
+    };
+}

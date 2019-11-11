@@ -9,7 +9,8 @@ export default function reducer(state = {}, action) {
                      selected: false,
                      index: idx + 1
                     }
-                })
+                }),
+            words: []
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -27,7 +28,19 @@ export default function reducer(state = {}, action) {
                         return square
                     }
                 })
-            }
         }
+    }
+
+    if (action.type == 'WORDS_UPDATE') {
+        return {
+            ...state,
+            words: [
+                ...state.words,
+                action.words
+            ]
+        }
+        
+    }
+
     return state;
 };

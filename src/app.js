@@ -1,8 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import Gameboard from './game-board'
 import { createStore, applyMiddleware } from 'redux'
-import PropTypes from "prop-types";
-import SpeechRecognition from "react-speech-recognition";
 import reduxPromise from 'redux-promise'
 import reducer from './reducer'
 import { Provider } from 'react-redux'
