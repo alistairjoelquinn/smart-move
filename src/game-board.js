@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getSquares } from './actions';
 
@@ -8,6 +8,8 @@ export default function Gameboard() {
         state.squares && state.squares
     );
     console.log(squares);
+    let numbers = [{1: 'one'}]
+   
     
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -18,9 +20,14 @@ export default function Gameboard() {
             .map(results => results[0])
             .map(result => result.transcript)
             .join('');
-        // if(e.results[0].isFinal) {
-           
-        // }
+
+        if(e.results[0].isFinal) {
+            console.log("if statement opened");
+            console.log(numbers[square.id]);
+           if(transcript.includes(`square ${square.id}` || `square ${numbers[square.id]}`)) {
+               document.querySelector('#square-1').classList.add('selected');
+           }
+        }
     });
     recognition.addEventListener('end', recognition.start);
     recognition.start();
@@ -38,12 +45,12 @@ export default function Gameboard() {
 
     return (
         <div id="game-grid">
-            {squares.map((square, idx) => 
-                <div className="box selected" key={square.id}>
-                    <div className="yellow">{idx + 1}</div>
-                    <div className="red">
+            {squares.map((square, index) => 
+                <div className={square.selected ? "box selected" : "box"} key={square.id} id={`square-${square.id}`}>
+                    <span className="yellow">{index + 1}</span>
+                    <span className="red">
                         <img src={square.url} />
-                    </div>
+                    </span>
                 </div>
             )}
         </div>
