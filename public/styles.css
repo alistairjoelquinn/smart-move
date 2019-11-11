@@ -7,7 +7,7 @@ body {
     height: 100vh;
     margin: none;
     display: grid;
-    grid-template-columns: 3fr 6fr 3fr;
+    grid-template-columns: 2fr 6fr 2fr;
     grid-template-rows: 1.2fr 4fr;
     grid-template-areas:
        "top top top"
@@ -91,7 +91,7 @@ body {
     justify-content: center;
 }
 
-.box:hover {
+.selected {
     transform-origin: center 40px;
     -webkit-transform-origin: center 40px;
     transform: rotateX(90deg);

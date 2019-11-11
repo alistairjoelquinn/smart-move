@@ -1,43 +1,53 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { getSquares } from './actions';
+import { useDispatch, useSelector } from 'react-redux'
+import { getSquares, squareSelected } from './actions'
+import { numbers } from './numberArray'
 
 export default function Gameboard() {
     const dispatch = useDispatch();
     const squares = useSelector(state =>
         state.squares && state.squares
     );
-    console.log(squares);
-    let numbers = [{1: 'one'}]
    
-    
-
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     let recognition = new SpeechRecognition();
-    recognition.interimResults = false;
-    recognition.addEventListener("result", e => {
-        const transcript = Array.from(e.results)
-            .map(results => results[0])
-            .map(result => result.transcript)
-            .join('');
-
-        if(e.results[0].isFinal) {
-            console.log("if statement opened");
-            console.log(numbers[square.id]);
-           if(transcript.includes(`square ${square.id}` || `square ${numbers[square.id]}`)) {
-               document.querySelector('#square-1').classList.add('selected');
-           }
-        }
-    });
-    recognition.addEventListener('end', recognition.start);
-    recognition.start();
 
     useEffect(() => {
-        dispatch(
-            getSquares()
-        );
-
-    }, []);
+        (async () => {
+            await dispatch(
+                getSquares()
+            );
+            recognition.interimResults = false;
+            recognition.addEventListener("result", e => {
+                const transcript = Array.from(e.results)
+                    .map(results => results[0])
+                    .map(result => result.transcript)
+                    .join('');
+                if(e.results[0].isFinal) {
+                    console.log("if statement opened");
+                    console.log(transcript);
+                    numbers.map((number, index) => {
+                        if(transcript.includes(`square ${number}` || 
+                                                `square ${index + 1}` || 
+                                                `Square ${number}` || 
+                                                `Square ${index + 1}` || 
+                                                `sq${number}` || 
+                                                `sq${index + 1}` || 
+                                                `Sq${number}` || 
+                                                `Sq${index + 1}` ||
+                                                `SQ${number}` || 
+                                                `SQ${index + 1}`)) {
+                            console.log(number);
+                            console.log(index + 1);
+                            dispatch(squareSelected(index));
+                        }
+                    })
+                }
+            });
+            recognition.addEventListener('end', recognition.start);
+            recognition.start();
+        })();
+    }, [squares]);
 
     if(!squares){
         return null;

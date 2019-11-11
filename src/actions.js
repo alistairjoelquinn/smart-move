@@ -11,3 +11,10 @@ export async function getSquares() {
         console.log("gathering 30 squares: ", err);
     }
 }
+
+export async function squareSelected(id) {
+    return {
+        type: "SELECT_SQUARE",
+        id: id
+    };
+}
