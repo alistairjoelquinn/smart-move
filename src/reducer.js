@@ -34,10 +34,9 @@ export default function reducer(state = {}, action) {
     if (action.type == 'WORDS_UPDATE') {
         return {
             ...state,
-            words: [
-                ...state.words,
+            words: 
                 action.words
-            ]
+
         }
         
     }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, squareSelected, wordsUpdate } from './actions'
-import { numbers } from './numberArray'
+import { getSquares, wordsUpdate, squareSelected } from './actions'
+import { valid } from './valid'
 
 export default function Gameboard() {
     const dispatch = useDispatch();
@@ -14,7 +14,15 @@ export default function Gameboard() {
     
    
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
     let recognition = new SpeechRecognition();
+    let speechRecognitionList = new SpeechGrammarList();
+    const numbers = [ 'one' , 'two' , 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 
+    'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 
+    'twenty one', 'twenty two', 'twenty three', 'twenty four', 'twenty five', 'twenty six', 'twenty seven', 
+    'twenty eight', 'twenty nine', 'thirty'];
+    const grammar = '#JSGF V1.0; grammar numbers; public <number> = ' + numbers.join(' | ') + ' ;'
+    speechRecognitionList.addFromString(grammar, 5);
 
     useEffect(() => {
         (async () => {
@@ -22,35 +30,15 @@ export default function Gameboard() {
                 getSquares()
             );
             recognition.interimResults = false;
+            recognition.grammars = speechRecognitionList;
             recognition.addEventListener("result", e => {
-                let p = document.createElement('p');
                 const transcript = Array.from(e.results)
                     .map(results => results[0])
                     .map(result => result.transcript)
                     .join('');
-                p.textContent = transcript;
                 if(e.results[0].isFinal) {
-                    
-                    dispatch(wordsUpdate(p.innerText));
-                    
-                    // console.log("if statement opened");
-                    // console.log(transcript);
-                    // numbers.map((number, index) => {
-                    //     if(transcript.includes(`square ${number}` || 
-                    //                             `square ${index + 1}` || 
-                    //                             `Square ${number}` || 
-                    //                             `Square ${index + 1}` || 
-                    //                             `sq${number}` || 
-                    //                             `sq${index + 1}` || 
-                    //                             `Sq${number}` || 
-                    //                             `Sq${index + 1}` ||
-                    //                             `SQ${number}` || 
-                    //                             `SQ${index + 1}`)) {
-                    //         console.log(number);
-                    //         console.log(index + 1);
-                    //         dispatch(squareSelected(index));
-                    //     }
-                    // })
+                    console.log(transcript);
+                    dispatch(wordsUpdate(transcript));
                 }
             });
             recognition.addEventListener('end', recognition.start);
@@ -59,14 +47,15 @@ export default function Gameboard() {
     }, []);
 
     useEffect(() => {
-        if(words) {
-            console.log(words);
-            if(words.includes('Square', 0)) {
-                console.log("words anf things");
-                console.log(words[words.length - 1]);
+        if(!words) {
+            return;
+        }
+        for(let key in valid) {
+            if (words.includes(key)) {
+                dispatch(squareSelected(valid[key]-1));
+                break;
             }
         }
-
     }, [words]);
 
     if(!squares){
