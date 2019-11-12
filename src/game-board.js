@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
+import Modal from './info-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, wordsUpdate, squareSelected } from './actions'
+import { getSquares, wordsUpdate, squareSelected, showModal, closeModal } from './actions'
 import { valid } from './valid'
 
 export default function Gameboard() {
@@ -10,6 +11,9 @@ export default function Gameboard() {
     );
     const words = useSelector(state => 
         state.words && state.words
+    );
+    const modalIsVisible = useSelector(state => 
+        state.modalIsVisible && state.modalIsVisible
     );
     
    
@@ -53,9 +57,16 @@ export default function Gameboard() {
         for(let key in valid) {
             if (words.includes(key)) {
                 dispatch(squareSelected(valid[key]-1));
+                setTimeout(() => {
+                    dispatch(showModal());
+                }, 1500);
                 break;
             }
         }
+        if (words.includes('next up')) {
+            dispatch(closeModal());
+        }
+        
     }, [words]);
 
     if(!squares){
@@ -72,6 +83,7 @@ export default function Gameboard() {
                     </span>
                 </div>
             )}
+            {modalIsVisible && <Modal />}
         </div>
     )
 }

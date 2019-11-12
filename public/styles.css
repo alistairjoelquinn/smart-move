@@ -102,3 +102,42 @@ img {
     height: 60px;
     border: 1px solid black;
 }
+
+.info-modal {
+    font-family: 'Fredoka One', cursive;
+    background-color: rgb(36, 35, 35);
+    position: fixed;
+    top: 25vh;
+    left: 30vw;
+    right: 30vw;
+    bottom: 50vh;
+    min-width: 320px;
+    min-height: 150px;
+    max-height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    z-index: 2;
+    border-radius: 100px;
+    color: darkgray;
+    box-shadow:
+        0 0 3px 5px rgb(213, 189, 128),  
+        0 0 5px 2px rgb(189, 182, 189), 
+        0 0 1px 5px rgb(255, 247, 236); 
+}
+
+.info-modal p {
+    margin-top: 40px;
+    font-size: 24px;
+}
+
+.white-out {
+    background-color: rgba(41, 35, 35, 0.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}

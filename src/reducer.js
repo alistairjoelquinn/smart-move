@@ -7,10 +7,11 @@ export default function reducer(state = {}, action) {
                     return  {
                         ...square,
                      selected: false,
-                     index: idx + 1
+                     index: idx + 1,
                     }
                 }),
-            words: []
+            words: [],
+            modalIsVisible: false
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -36,10 +37,20 @@ export default function reducer(state = {}, action) {
             ...state,
             words: 
                 action.words
-
         }
-        
     }
+
+    if (action.type == 'SHOW_MODAL') {
+        return { 
+            ...state, 
+            modalIsVisible: true
+        }}
+
+    if (action.type == 'CLOSE_MODAL') {
+        return { 
+            ...state, 
+            modalIsVisible: false
+        }}
 
     return state;
 };

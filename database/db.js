@@ -3,7 +3,7 @@ const db = spicedPg(process.env.DATABASE_URL || `postgres:postgres:postgres@loca
 
 module.exports.init = (numArr) => {
     return db.query(
-        `SELECT id, name, url
+        `SELECT id, name, url, modal1, modal2, audio
         FROM images
         WHERE id = ANY($1)
         ORDER BY random()

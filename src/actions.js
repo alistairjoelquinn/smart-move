@@ -25,3 +25,15 @@ export async function wordsUpdate(words) {
         words: words
     };
 }
+
+export async function showModal() {
+    return {
+        type: "SHOW_MODAL"
+    };
+}
+
+export async function closeModal() {
+    return {
+        type: "CLOSE_MODAL"
+    };
+}
