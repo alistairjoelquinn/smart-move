@@ -12,7 +12,8 @@ export default function reducer(state = {}, action) {
                     }
                 }),
             words: [],
-            modalIsVisible: false
+            modalIsVisible: false,
+            gameWon: false
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -67,6 +68,12 @@ export default function reducer(state = {}, action) {
         return { 
             ...state, 
             modalIsVisible: false
+        }}
+
+    if (action.type == 'GAME_WON') {
+        return { 
+            ...state, 
+            gameWon: true
         }}
 
     return state;

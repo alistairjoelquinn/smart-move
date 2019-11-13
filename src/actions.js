@@ -44,3 +44,10 @@ export async function closeModal() {
         type: "CLOSE_MODAL"
     };
 }
+
+export async function gameWasWon() {
+    return {
+        type: "GAME_WON"
+    };
+}
+

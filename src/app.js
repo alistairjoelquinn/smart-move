@@ -13,10 +13,13 @@ export default function App() {
         <div>
             <Provider store={store}>
                 <div className="main-layout">
-                    <p className="main-logo">smart move</p>
-                    <div className="sidebar-left"></div>
+                    <div className="main-logo">
+                        <p id="smart-move">smart move</p>
+                        <p id="can-you">Can you find a path from a to b?</p>
+                    </div>
+                    <div className="sidebar-left">a</div>
                     <Gameboard />
-                    <div className="sidebar-right"></div>
+                    <div className="sidebar-right">b</div>
                 </div>
             </Provider>
         </div>

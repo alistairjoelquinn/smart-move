@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Modal from './info-modal'
+import WinnerModal from './winner-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, wordsUpdate, squareSelected, showModal, closeModal, squareCorrect } from './actions'
+import { getSquares, wordsUpdate, squareSelected, showModal, closeModal, squareCorrect, gameWasWon } from './actions'
 import { valid } from './valid'
 
 export default function Gameboard() {
@@ -15,7 +16,21 @@ export default function Gameboard() {
     const modalIsVisible = useSelector(state => 
         state.modalIsVisible && state.modalIsVisible
     );
+    const gameWon = useSelector(state => 
+        state.gameWon && state.gameWon
+    );
+    
     const [ currentSquare, setCurrentSquare ] = useState({});
+
+    const winnerCheck = () => {
+        if(squares[0].correct && squares[1].correct && squares[2].correct && squares[3].correct && squares[4].correct && squares[5].correct == true ||
+            squares[6].correct && squares[7].correct && squares[8].correct && squares[9].correct && squares[10].correct && squares[11].correct == true ||
+            squares[12].correct && squares[13].correct && squares[14].correct && squares[15].correct && squares[16].correct && squares[17].correct == true ||
+            squares[18].correct && squares[19].correct && squares[20].correct && squares[21].correct && squares[22].correct && squares[23].correct == true ||
+            squares[24].correct && squares[25].correct && squares[26].correct && squares[27].correct && squares[28].correct && squares[29].correct) {
+            dispatch(gameWasWon());
+        }
+    };
    
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -51,12 +66,43 @@ export default function Gameboard() {
     }, []);
 
     useEffect(() => {
+        if(gameWon) {
+            var end = Date.now() + (15 * 1000);
+            var interval = setInterval(function() {
+                if (Date.now() > end) {
+                    return clearInterval(interval);
+                }
+
+                confetti({
+                    startVelocity: 30,
+                    spread: 360,
+                    ticks: 60,
+                    shapes: ['square'],
+                    origin: {
+                        x: Math.random(),
+                        // since they fall down, start a bit higher than random
+                        y: Math.random() - 0.2
+                    }
+                });
+            }, 500);
+        }
+    }, [gameWon]);
+
+    useEffect(() => {
+        if(!squares){
+            return;
+        }
+        winnerCheck();
+    }, [squares]);
+
+    useEffect(() => {
         if(!words) {
             return;
         }
         if(!currentSquare) {
             return;
         }
+        
         for(let key in valid) {
             if (words.includes(key)) {
                 dispatch(squareSelected(valid[key]-1));
@@ -72,7 +118,6 @@ export default function Gameboard() {
                 dispatch(closeModal());
             }, 6000);
         }
-        
     }, [words]);
 
     if(!squares){
@@ -89,6 +134,9 @@ export default function Gameboard() {
                     </span>
                 </div>
             )}
+            {gameWon && 
+                <WinnerModal />
+            }
             {modalIsVisible && 
                 <Modal 
                     currentSquare = {currentSquare}
