@@ -7,6 +7,7 @@ export default function reducer(state = {}, action) {
                     return  {
                         ...square,
                      selected: false,
+                     correct: false,
                      index: idx + 1,
                     }
                 }),
@@ -15,7 +16,6 @@ export default function reducer(state = {}, action) {
         }}
 
     if (action.type == 'SELECT_SQUARE') {
-        console.log("reducer action id: ", action.id);
         return {
             ...state,
             squares: 
@@ -24,6 +24,23 @@ export default function reducer(state = {}, action) {
                         return {
                             ...square,
                             selected: true
+                        }
+                    } else {
+                        return square
+                    }
+                })
+        }
+    }
+
+    if (action.type == 'SQUARE_CORRECT') {
+        return {
+            ...state,
+            squares: 
+                state.squares.map((square, index) => {
+                    if(action.id == index) {
+                        return {
+                            ...square,
+                            correct: true
                         }
                     } else {
                         return square

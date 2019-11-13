@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from './info-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, wordsUpdate, squareSelected, showModal, closeModal } from './actions'
+import { getSquares, wordsUpdate, squareSelected, showModal, closeModal, squareCorrect } from './actions'
 import { valid } from './valid'
 
 export default function Gameboard() {
@@ -15,7 +15,7 @@ export default function Gameboard() {
     const modalIsVisible = useSelector(state => 
         state.modalIsVisible && state.modalIsVisible
     );
-    
+    const [ currentSquare, setCurrentSquare ] = useState({});
    
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -54,17 +54,23 @@ export default function Gameboard() {
         if(!words) {
             return;
         }
+        if(!currentSquare) {
+            return;
+        }
         for(let key in valid) {
             if (words.includes(key)) {
                 dispatch(squareSelected(valid[key]-1));
-                setTimeout(() => {
-                    dispatch(showModal());
-                }, 1500);
+                setCurrentSquare(squares[valid[key]-1]);
                 break;
-            }
+            } 
         }
-        if (words.includes('next up')) {
-            dispatch(closeModal());
+
+        if((words).includes(currentSquare.name)) {
+            dispatch(squareCorrect(currentSquare.index-1));
+            dispatch(showModal());
+            setTimeout(() => {
+                dispatch(closeModal());
+            }, 6000);
         }
         
     }, [words]);
@@ -76,14 +82,18 @@ export default function Gameboard() {
     return (
         <div id="game-grid">
             {squares.map((square, index) => 
-                <div className={square.selected ? "box selected" : "box"} key={square.id} id={`square-${square.id}`}>
+                <div className={square.selected ? "box selected " : "box"} key={square.id} id={`square-${square.id}`}>
                     <span className="yellow">{index + 1}</span>
-                    <span className="red">
+                    <span className={square.correct ? "red correct" : "red"}>
                         <img src={square.url} />
                     </span>
                 </div>
             )}
-            {modalIsVisible && <Modal />}
+            {modalIsVisible && 
+                <Modal 
+                    currentSquare = {currentSquare}
+                />
+            }
         </div>
     )
 }

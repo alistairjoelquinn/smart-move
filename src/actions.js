@@ -19,6 +19,13 @@ export async function squareSelected(id) {
     };
 }
 
+export async function squareCorrect(id) {
+    return {
+        type: "SQUARE_CORRECT",
+        id: id
+    };
+}
+
 export async function wordsUpdate(words) {
     return {
         type: "WORDS_UPDATE",

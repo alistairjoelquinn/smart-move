@@ -98,6 +98,10 @@ body {
     -webkit-transform: rotateX(90deg);
 }
 
+#game-grid .box .correct {
+    background-color: lime;
+}
+
 img {
     height: 60px;
     border: 1px solid black;
@@ -107,19 +111,19 @@ img {
     font-family: 'Fredoka One', cursive;
     background-color: rgb(36, 35, 35);
     position: fixed;
-    top: 25vh;
-    left: 30vw;
-    right: 30vw;
-    bottom: 50vh;
-    min-width: 320px;
+    top: 20vh;
+    left: 20vw;
+    right: 20vw;
+    bottom: 10vh;
+    min-width: 520px;
     min-height: 150px;
-    max-height: 170px;
+    max-height: 40vh;
     display: flex;
     flex-direction: column;
     align-content: center;
     text-align: center;
     z-index: 2;
-    border-radius: 100px;
+    border-radius: 50px;
     color: darkgray;
     box-shadow:
         0 0 3px 5px rgb(213, 189, 128),  
@@ -140,4 +144,14 @@ img {
     right: 0;
     bottom: 0;
     z-index: 1;
+}
+
+#modal1, #modal2 {
+    height: 20vh;
+    align-self: center;
+}
+
+#modal-images {
+    display: flex;
+    justify-content: space-around;
 }

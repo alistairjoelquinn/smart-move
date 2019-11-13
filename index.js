@@ -25,7 +25,6 @@ app.get('/init', (req, res) => {
         let x = Math.floor(Math.random() * 78);
         if(numGen.indexOf(x) === -1) numGen.push(x);
     } while (numGen.length < 31);
-    console.log(numGen);
     init(numGen).then(({ rows }) => {
         res.json(rows);
     }).catch(err => console.log(err));
