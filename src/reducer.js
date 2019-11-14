@@ -13,7 +13,8 @@ export default function reducer(state = {}, action) {
                 }),
             words: [],
             modalIsVisible: false,
-            gameWon: false
+            gameWon: false,
+            currentSquare: {}
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -74,6 +75,13 @@ export default function reducer(state = {}, action) {
         return { 
             ...state, 
             gameWon: true
+        }}
+
+    if (action.type == 'CURRENT_SQUARE') {
+        console.log("action dot current is: ", action.current);
+        return { 
+            ...state, 
+            currentSquare: action.current
         }}
 
     return state;

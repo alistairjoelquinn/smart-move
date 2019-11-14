@@ -51,3 +51,10 @@ export async function gameWasWon() {
     };
 }
 
+export async function setCurrentSquare(current) {
+    return {
+        type: "CURRENT_SQUARE",
+        current: current
+    };
+}
+

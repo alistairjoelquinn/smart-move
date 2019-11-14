@@ -144,7 +144,7 @@ img {
     bottom: 10vh;
     min-width: 520px;
     min-height: 150px;
-    max-height: 35vh;
+    max-height: 45vh;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -161,6 +161,12 @@ img {
 .info-modal p {
     margin-top: 40px;
     font-size: 24px;
+}
+
+audio {
+    margin-top: 40px;
+    align-self: center;
+    outline: none;
 }
 
 .winner-modal {
@@ -237,6 +243,16 @@ img {
 }
 
 @keyframes fadeOut {
+    0% {
+        visibility: hidden;
+    }
+    20% {
+        visibility: hidden;
+    }
+    50% {
+        visibility: visible;
+    }
+
     99% {
       visibility: visible;
     }
@@ -286,7 +302,7 @@ img {
     -webkit-text-stroke: 2px black;
     text-shadow: 2px 2px 3px tomato;
     margin-bottom: 0;
-    margin-top: 70px;
+    margin-top: 40px;
     margin-left: 60px;
     margin-right: 60px;
 }
