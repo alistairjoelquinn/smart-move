@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Modal from './info-modal'
 import WinnerModal from './winner-modal'
+import WelcomeModal from './welcome-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSquares, wordsUpdate, squareSelected, showModal, closeModal, squareCorrect, gameWasWon } from './actions'
 import { valid } from './valid'
@@ -19,7 +20,6 @@ export default function Gameboard() {
     const gameWon = useSelector(state => 
         state.gameWon && state.gameWon
     );
-    
     const [ currentSquare, setCurrentSquare ] = useState({});
 
     const winnerCheck = () => {
@@ -66,26 +66,27 @@ export default function Gameboard() {
     }, []);
 
     useEffect(() => {
-        if(gameWon) {
-            var end = Date.now() + (15 * 1000);
-            var interval = setInterval(function() {
-                if (Date.now() > end) {
-                    return clearInterval(interval);
-                }
-
-                confetti({
-                    startVelocity: 30,
-                    spread: 360,
-                    ticks: 60,
-                    shapes: ['square'],
-                    origin: {
-                        x: Math.random(),
-                        // since they fall down, start a bit higher than random
-                        y: Math.random() - 0.2
+        setTimeout(() => {
+            if(gameWon) {
+                var end = Date.now() + (15 * 1000);
+                var interval = setInterval(function() {
+                    if (Date.now() > end) {
+                        return clearInterval(interval);
                     }
-                });
-            }, 500);
-        }
+                    confetti({
+                        startVelocity: 30,
+                        spread: 360,
+                        ticks: 60,
+                        shapes: ['square'],
+                        origin: {
+                            x: Math.random(),
+                            y: Math.random() - 0.2
+                        }
+                    });
+                }, 500);
+            }
+        }, 6000)
+        
     }, [gameWon]);
 
     useEffect(() => {
@@ -134,6 +135,7 @@ export default function Gameboard() {
                     </span>
                 </div>
             )}
+            <WelcomeModal />
             {gameWon && 
                 <WinnerModal />
             }

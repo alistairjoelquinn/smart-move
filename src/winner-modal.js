@@ -7,7 +7,7 @@ export default function WinnerModal() {
 
     return (
         <div>
-            <div className="info-modal">
+            <div className="winner-modal">
                 <p id="play-again">You made it!</p>
                 <p id="play-again2">Smart move!</p>
                 <button onClick={reload} id="play-again-button">Play Again?</button>
