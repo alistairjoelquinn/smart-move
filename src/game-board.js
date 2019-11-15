@@ -3,7 +3,7 @@ import Modal from './info-modal'
 import WinnerModal from './winner-modal'
 import WelcomeModal from './welcome-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, wordsUpdate, squareSelected, showModal, closeModal, squareCorrect, setCurrentSquare, gameWasWon } from './actions'
+import { getSquares, wordsUpdate, squareSelected, showModal, showWelcome, hideWelcome, closeModal, squareCorrect, setCurrentSquare, gameWasWon } from './actions'
 import { valid } from './valid'
 
 export default function Gameboard() {
@@ -23,6 +23,10 @@ export default function Gameboard() {
     const currentSquare = useSelector(state => 
         state.currentSquare && state.currentSquare
     );
+    const welcomeVisible = useSelector(state => 
+        state.welcomeVisible && state.welcomeVisible
+    );
+
 
     const winnerCheck = () => {
         if(squares[0].correct && squares[1].correct && squares[2].correct && squares[3].correct && squares[4].correct && squares[5].correct == true ||
@@ -114,12 +118,19 @@ export default function Gameboard() {
             } 
         }
 
-        if((words).includes(currentSquare.name)) {
+        if(words.includes(currentSquare.name)) {
             dispatch(squareCorrect(currentSquare.index-1));
             dispatch(showModal());
             setTimeout(() => {
                 dispatch(closeModal());
             }, 6000);
+        }
+
+        if(words.includes('instructions')) {
+            dispatch(showWelcome());
+            setTimeout(() => {
+                dispatch(hideWelcome());
+            }, 5000)
         }
     }, [words]);
 
@@ -137,7 +148,9 @@ export default function Gameboard() {
                     </span>
                 </div>
             )}
-            <WelcomeModal />
+            {welcomeVisible &&
+                <WelcomeModal />
+            }
             {gameWon && 
                 <WinnerModal />
             }

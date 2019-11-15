@@ -39,6 +39,18 @@ export async function showModal() {
     };
 }
 
+export async function showWelcome() {
+    return {
+        type: "SHOW_WELCOME"
+    };
+}
+
+export async function hideWelcome() {
+    return {
+        type: "HIDE_WELCOME"
+    };
+}
+
 export async function closeModal() {
     return {
         type: "CLOSE_MODAL"

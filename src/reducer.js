@@ -14,6 +14,7 @@ export default function reducer(state = {}, action) {
             words: [],
             modalIsVisible: false,
             gameWon: false,
+            welcomeVisible: false,
             currentSquare: {}
         }}
 
@@ -64,6 +65,18 @@ export default function reducer(state = {}, action) {
             ...state, 
             modalIsVisible: true
         }}
+
+    if (action.type == 'SHOW_WELCOME') {
+    return { 
+        ...state, 
+        welcomeVisible: true
+    }}
+
+    if (action.type == 'HIDE_WELCOME') {
+    return { 
+        ...state, 
+        welcomeVisible: false
+    }}
 
     if (action.type == 'CLOSE_MODAL') {
         return { 

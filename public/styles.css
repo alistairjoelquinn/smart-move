@@ -144,7 +144,7 @@ img {
     bottom: 10vh;
     min-width: 520px;
     min-height: 150px;
-    max-height: 45vh;
+    max-height: 40vh;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -232,9 +232,6 @@ audio {
         0 0 3px 5px rgb(213, 189, 128),  
         0 0 5px 2px rgb(189, 182, 189), 
         0 0 1px 5px rgb(255, 247, 236); 
-    animation: 6s fadeOut;
-    animation-fill-mode: forwards;        
-    visibility: visible;
 }
 
 .welcome-modal p {
@@ -269,9 +266,6 @@ audio {
     right: 0;
     bottom: 0;
     z-index: 1;
-    animation: 6s fadeOut;
-    animation-fill-mode: forwards;        
-    visibility: visible;
 }
 
 .white-out {
