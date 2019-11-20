@@ -6,7 +6,7 @@ import Login from './login';
 export default function Welcome() {
     return (
         <div className="welcome-box">
-            <div className="main-logo">
+            <div className="main-logo-welcome">
                 <p id="smart-move">smart move</p>
             </div>
             <HashRouter>

@@ -3,6 +3,33 @@ body {
     background-color: dodgerblue;
 }
 
+.welcome-box {
+    height: 100vh;
+    margin: none;
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 0.1fr 1fr 1fr;
+    grid-template-areas: 
+        "first"
+        "second"
+        "third"
+        "fourth"
+        "fifth";
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-fields input {
+    width: 10vw;
+}
+
+.registration {
+    grid-area: fourth;
+}
+
 .main-layout {
     height: 100vh;
     margin: none;
@@ -17,6 +44,18 @@ body {
 
 .main-logo {
     grid-area: top;
+    font-size: 80px;
+    text-align: center;
+    color: blanchedalmond;
+    font-family: 'Fredoka One', cursive;
+    -webkit-text-stroke: 2px black;
+    text-shadow: 2px 2px 3px tomato;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+.main-logo-welcome {
+    grid-area: second;
     font-size: 80px;
     text-align: center;
     color: blanchedalmond;
