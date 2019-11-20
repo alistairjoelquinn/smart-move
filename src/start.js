@@ -18,7 +18,6 @@ const userIsLoggedIn = (
 if (!userIsLoggedIn) {
     elem = <Welcome />;
 } else {
-    init(store);
     elem = (
         <Provider store={store}>
             <App />

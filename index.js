@@ -7,6 +7,11 @@ const csurf = require('csurf');
 const s3 = require('./s3');
 const { s3Url } = require('./config');
 const { uploader } = require('./upload');
+const cookieSession = require('cookie-session');
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 90
+});
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('./public'));
@@ -30,6 +35,14 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+app.get('/welcome', (req, res) => {
+    if (req.session.userId) {
+        res.redirect('/');
+    } else {
+        res.sendFile(__dirname + '/index.html');
+    }
+});
+
 app.get('/init', (req, res) => {
     let numGen = [];
     do {
@@ -42,7 +55,11 @@ app.get('/init', (req, res) => {
 });
 
 app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+    if(!req.session.userId) {
+        res.redirect('/welcome');
+    } else {
+        res.sendFile(__dirname + '/index.html');
+    }
 });
 
 app.listen(8080, () => console.log("I'm listening."));
