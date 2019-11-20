@@ -22,7 +22,7 @@ if (process.env.NODE_ENV != 'production') {
 app.get('/init', (req, res) => {
     let numGen = [];
     do {
-        let x = Math.floor(Math.random() * 63);
+        let x = Math.floor(Math.random() * 78);
         if(numGen.indexOf(x) === -1) numGen.push(x);
     } while (numGen.length < 31);
     init(numGen).then(({ rows }) => {
