@@ -36,20 +36,21 @@ export default class Register extends React.Component {
     render() {
         return (
             <div className="input-fields">
+                <div id="reg-text">Register to create an account.</div>
                 {this.state.error && (
                     <div className="error">Oops! You made a mistake.</div>
                 )}
-                <Link id="already-member" to="/login">Log In</Link>
-                <input className="placeholder-shine" name="first" type="text" placeholder="First Name..." onChange={e => {
+                <Link id="login-button" to="/login">Log In</Link>
+                <input className="reg-input" name="first" type="text" placeholder="First Name..." onChange={e => {
                     this.handleChange(e);
                 }} required />
-                <input className="placeholder-shine" name="last" type="text" placeholder="Last Name..." onChange={e => {
+                <input className="reg-input" name="last" type="text" placeholder="Last Name..." onChange={e => {
                     this.handleChange(e);
                 }} required />
-                <input className="placeholder-shine" name="email" type="email" placeholder="Email Address..."onChange={e => {
+                <input className="reg-input" name="email" type="email" placeholder="Email Address..."onChange={e => {
                     this.handleChange(e);
                 }} required />
-                <input className="placeholder-shine" name="password" type="password" placeholder="Password" onChange={e => {
+                <input className="reg-input" name="password" type="password" placeholder="Password" onChange={e => {
                     this.handleChange(e);
                 }} required />
                 <a className="submit-button" onClick={() => this.submit()}>Submit</a>
