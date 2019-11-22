@@ -38,7 +38,7 @@ export default class Register extends React.Component {
             <div className="input-fields">
                 <div id="reg-text">Register to create an account.</div>
                 {this.state.error && (
-                    <div className="error">Oops! You made a mistake.</div>
+                    <div className="reg-error">Oops! You made a mistake.</div>
                 )}
                 <Link id="login-button" to="/login">Log In</Link>
                 <input className="reg-input" name="first" type="text" placeholder="First Name..." onChange={e => {

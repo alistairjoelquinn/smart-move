@@ -1,18 +1,17 @@
-import React from "react";
-import Gameboard from './game-board'
+import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom';
+import GameApp from './game-app'
+import TeacherArea from './teacher-area'
 
 export default function App() {
     return (
-        <div>
-            <div className="main-layout">
-                <div className="main-logo">
-                    <p id="smart-move">smart move</p>
-                    <p id="can-you">Can you find a path from a to b?</p>
+        <React.Fragment>
+            <BrowserRouter>
+                <div>
+                    <Route exact path="/teacher-area" component={TeacherArea} />
+                    <Route exact path="/game" component={GameApp} />
                 </div>
-                <div className="sidebar-left">a</div>
-                <Gameboard />
-                <div className="sidebar-right">b</div>
-            </div>
-        </div>
+            </BrowserRouter>
+       </React.Fragment>
     )
 }

@@ -11,3 +11,12 @@ module.exports.init = (numArr) => {
         [numArr]
     );
 };
+
+module.exports.newUser = (first, last, email, passHash) => {
+    return db.query(
+        `INSERT INTO users (firstname, lastname, email, password)
+        VALUES ($1, $2, $3, $4)
+        RETURNING firstname, lastname, id`,
+        [first, last, email, passHash]
+    );
+};

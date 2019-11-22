@@ -1,12 +1,13 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
-const { init } = require ('./database/db');
+const { init, newUser } = require ('./database/db');
 const { hash, compare } = require('./auth');
 const csurf = require('csurf');
 const s3 = require('./s3');
 const { s3Url } = require('./config');
 const { uploader } = require('./upload');
+const { validation } = require('./validate');
 const cookieSession = require('cookie-session');
 const cookieSessionMiddleware = cookieSession({
     secret: `I'm always angry.`,
@@ -43,13 +44,34 @@ app.get('/welcome', (req, res) => {
     }
 });
 
+app.post('/register', (req, res) => {
+    let { first, last, email, password } = req.body;
+    if(
+        validation(first, last)
+    ){
+        hash(password).then((passHash) => {
+            newUser(first, last, email, passHash).then(({ rows }) => {
+                req.session.userId = rows[0].id;
+                console.log("hello world: ", req.session.userId);
+                res.redirect('/');
+            }).catch(() => res.redirect(500, '/welcome'));
+        }).catch(() => res.redirect(500, '/welcome'));
+    } else {
+        res.redirect(500, '/welcome');
+    }
+});
+
 app.get('/init', (req, res) => {
     let numGen = [];
     do {
         let x = Math.floor(Math.random() * 78);
         if(numGen.indexOf(x) === -1) numGen.push(x);
     } while (numGen.length < 31);
+    console.log("numgen: ", numGen);
+    console.log("numgen length: ", numGen.length);
+    
     init(numGen).then(({ rows }) => {
+        console.log("returned back from the database: ", rows.length);
         res.json(rows);
     }).catch(err => console.log(err));
 });
