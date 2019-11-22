@@ -107,6 +107,24 @@ body {
     margin-bottom: 20px;
 }
 
+#teacher-link, #game-link, #maths-link {
+    font-size: 40px;
+    text-align: center;
+    color: blanchedalmond;
+    font-family: 'Fredoka One', cursive;
+    -webkit-text-stroke: 1.2px black;
+    text-shadow: 2px 2px 3px tomato;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.top-banner {
+    display: flex;
+    width: 100vw;
+    justify-content: flex-start;
+}
+
 .main-layout {
     height: 100vh;
     margin: none;
