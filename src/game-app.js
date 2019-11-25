@@ -1,9 +1,11 @@
 import React from "react";
 import Gameboard from './game-board'
+import { Link } from 'react-router-dom'
 
 export default function GameApp() {
     return (
         <div>
+            <Link id="teacher-link" to="/teacher-area">📝</Link>  
             <div className="main-layout">
                 <div className="main-logo">
                     <p id="smart-move">smart move</p>
