@@ -40,7 +40,7 @@ export default class Login extends Component {
                 <input name="password" type="password" placeholder="Password" onChange={e => {
                     this.handleChange(e);
                 }} required />
-                <button onClick={() => this.submit()}>Login</button>
+                <button id="login-inner" onClick={() => this.submit()}>Login</button>
             </div>
         );
     }

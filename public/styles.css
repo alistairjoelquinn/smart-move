@@ -47,6 +47,16 @@ body {
     grid-area: fourth;
 }
 
+.login-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-fields input {
+    width: 10vw;
+}
+
 .input-fields input {
     font-family: 'Quicksand', sans-serif;
     margin: 4px;
@@ -60,7 +70,37 @@ body {
     outline: none;
 }
 
-#login-button {
+.login-fields input {
+    font-family: 'Quicksand', sans-serif;
+    margin: 4px;
+    font-size: 16px;
+    height: 25px;
+    width: 250px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+    outline: none;
+}
+
+#login-inner {
+    font-family: 'Quicksand', sans-serif;
+    border: 1px solid rgb(67, 66, 66);
+    background-color: antiquewhite;
+    color: dimgray;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    width: 60px;
+    height: 26px;
+    border-radius: 4px;
+    margin-top: 10px;
+    line-height: 22px;
+    padding-bottom: 10px;
+    outline: none;
+}
+
+#login-button, #back-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -79,15 +119,7 @@ body {
     outline: none;
 }
 
-#login-button:hover {
-    border: 1px solid tomato;
-}
-
-.submit-button:hover {
-    border: 1px solid tomato;
-}
-
-.input-fields input:hover {
+#login-button:hover, #back-button:hover, #login-inner:hover, .submit-button:hover, .input-fields input:hover, .login-fields input:hover {
     border: 1px solid tomato;
 }
 
