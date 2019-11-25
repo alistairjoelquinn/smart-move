@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
-const { init, newUser } = require ('./database/db');
+const { init, newUser, getPassword } = require ('./database/db');
 const { hash, compare } = require('./auth');
 const csurf = require('csurf');
 const s3 = require('./s3');
@@ -36,6 +36,11 @@ if (process.env.NODE_ENV != 'production') {
     app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
+app.get('/logout', (req, res) => {
+    req.session = null;
+    res.redirect('/');
+});
+
 app.get('/welcome', (req, res) => {
     if (req.session.userId) {
         res.redirect('/');
@@ -59,6 +64,24 @@ app.post('/register', (req, res) => {
     } else {
         res.redirect(500, '/welcome');
     }
+});
+
+app.post('/login', (req, res) => {
+    let { email, password } = req.body;
+    let id;
+    getPassword(email)
+        .then(({ rows }) => {
+            let passStored = rows[0].password;
+            id = rows[0].id;
+            compare(password, passStored).then(valid => {
+                if(valid == true){
+                    req.session.userId = id;
+                    res.sendFile(__dirname + '/index.html');
+                } else {
+                    res.redirect(500, '/welcome#/login');
+                }
+            }).catch(() => res.redirect(500, '/welcome#/login'));
+        }).catch(() => res.redirect(500, '/welcome#/login'));
 });
 
 app.get('/init', (req, res) => {

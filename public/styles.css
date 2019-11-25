@@ -100,7 +100,7 @@ body {
     outline: none;
 }
 
-#login-button, #back-button {
+#login-button, #back-button, #logout-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -119,11 +119,11 @@ body {
     outline: none;
 }
 
-#login-button:hover, #back-button:hover, #login-inner:hover, .submit-button:hover, .input-fields input:hover, .login-fields input:hover {
+#login-button:hover, #logout-button:hover, #back-button:hover, #login-inner:hover, .submit-button:hover, .input-fields input:hover, .login-fields input:hover {
     border: 1px solid tomato;
 }
 
-.reg-error {
+.reg-error, .login-error {
     font-family: 'Fredoka One', cursive;
     color: antiquewhite;
     -webkit-text-stroke: 1px black;
@@ -142,8 +142,8 @@ body {
 #teacher-link {
     font-size: 40px;
     position: absolute;
-    left: 20px;
-    top: 30px;
+    left: 10px;
+    top: 10px;
     text-decoration: none;
     outline: none;
 }
@@ -151,8 +151,8 @@ body {
 #game-link {
     font-size: 40px;
     position: absolute;
-    left: 20px;
-    top: 30px;
+    left: 10px;
+    top: 10px;
     text-decoration: none;
     outline: none;
 }

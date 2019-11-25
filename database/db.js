@@ -20,3 +20,11 @@ module.exports.newUser = (first, last, email, passHash) => {
         [first, last, email, passHash]
     );
 };
+
+module.exports.getPassword = (email) => {
+    return db.query(
+        `SELECT password, id FROM users 
+        WHERE email = $1`,
+        [email]
+    );
+};

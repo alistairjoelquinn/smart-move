@@ -32,7 +32,7 @@ export default class Login extends Component {
             <div className="login-fields">
                 <a id="back-button" href="/">Back</a>
                 {this.state.error && (
-                    <div className="error">Oops! You made a mistake.</div>
+                    <div className="login-error">Oops! You made a mistake.</div>
                 )}
                 <input name="email" type="email" placeholder="Email Address..."onChange={e => {
                     this.handleChange(e);
