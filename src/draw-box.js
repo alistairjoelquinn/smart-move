@@ -18,8 +18,8 @@ export default function DrawBox() {
         console.log("offsetleft: ", canvasBox.offsetLeft);
         console.log(setX, setY);
         if(e.buttons != 1) return;
-        c.strokeStyle = 'black';
-        c.lineWidth = 2;
+        c.strokeStyle = '#0c00f9';
+        c.lineWidth = 4;
         c.beginPath();
         c.moveTo(setX, setY);
         updatePosition(e);
@@ -44,7 +44,7 @@ export default function DrawBox() {
 
     return (
         <React.Fragment>
-            <canvas id="sigbox" width={300} height={300} ></canvas>
+            <canvas id="sigbox" width={500} height={200} ></canvas>
         </React.Fragment>
     )
 }

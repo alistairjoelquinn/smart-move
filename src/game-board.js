@@ -3,7 +3,7 @@ import Modal from './info-modal'
 import WinnerModal from './winner-modal'
 import WelcomeModal from './welcome-modal'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSquares, wordsUpdate, squareSelected, showModal, showWelcome, hideWelcome, closeModal, squareCorrect, setCurrentSquare, gameWasWon } from './actions'
+import { getSquares, wordsUpdate, squareSelected, showModal, showWelcome, hideWelcome, squareCorrect, setCurrentSquare, gameWasWon } from './actions'
 import { valid } from './valid'
 
 export default function Gameboard() {
@@ -27,7 +27,6 @@ export default function Gameboard() {
         state.welcomeVisible && state.welcomeVisible
     );
 
-
     const winnerCheck = () => {
         if(squares[0].correct && squares[1].correct && squares[2].correct && squares[3].correct && squares[4].correct && squares[5].correct == true ||
             squares[6].correct && squares[7].correct && squares[8].correct && squares[9].correct && squares[10].correct && squares[11].correct == true ||
@@ -37,6 +36,7 @@ export default function Gameboard() {
             dispatch(gameWasWon());
         }
     };
+
    
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -121,9 +121,6 @@ export default function Gameboard() {
         if(words.includes(currentSquare.name)) {
             dispatch(squareCorrect(currentSquare.index-1));
             dispatch(showModal());
-            // setTimeout(() => {
-            //     dispatch(closeModal());
-            // }, 6000);
         }
 
         if(words.includes('instructions')) {
