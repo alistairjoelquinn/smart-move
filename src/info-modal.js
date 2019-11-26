@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import DrawBox from './draw-box'
 
 export default function Modal() {
     const currentSquare = useSelector(state => 
@@ -18,7 +19,7 @@ export default function Modal() {
                 <div id="modal-images">
                     <img id="modal1" src={currentSquare.modal1} /><img id="modal2" src={currentSquare.modal2} />
                 </div>
-                {/* <audio src={currentSquare.audio} controls></audio> */}
+                <DrawBox />
             </div>
             <div className="white-out"></div>
         </div>

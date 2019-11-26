@@ -121,9 +121,9 @@ export default function Gameboard() {
         if(words.includes(currentSquare.name)) {
             dispatch(squareCorrect(currentSquare.index-1));
             dispatch(showModal());
-            setTimeout(() => {
-                dispatch(closeModal());
-            }, 6000);
+            // setTimeout(() => {
+            //     dispatch(closeModal());
+            // }, 6000);
         }
 
         if(words.includes('instructions')) {

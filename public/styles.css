@@ -139,16 +139,7 @@ body {
     margin-bottom: 20px;
 }
 
-#teacher-link {
-    font-size: 40px;
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    text-decoration: none;
-    outline: none;
-}
-
-#game-link {
+#teacher-link, #game-link {
     font-size: 40px;
     position: absolute;
     left: 10px;
@@ -316,8 +307,8 @@ img {
     bottom: 10vh;
     min-width: 520px;
     min-height: 150px;
-    max-height: 40vh;
-    display: flex;
+    max-height: 70vh;
+    /* display: flex; */
     flex-direction: column;
     align-content: center;
     text-align: center;
@@ -335,10 +326,12 @@ img {
     font-size: 24px;
 }
 
-audio {
+canvas {
+    border: 2px solid tomato;
+    background-color: antiquewhite;
+    border-radius: 10px;
+    color: black;
     margin-top: 40px;
-    align-self: center;
-    outline: none;
 }
 
 .winner-modal {
@@ -495,10 +488,6 @@ audio {
 }
 
 #play-again-button {
-    /* line-height: 100px;
-    height: 100px;
-    width: 100px;
-    align-self: center; */
     margin-top: 0;
     font-size: 80px;
     text-align: center;
