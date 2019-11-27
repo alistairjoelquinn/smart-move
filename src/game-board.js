@@ -36,7 +36,6 @@ export default function Gameboard() {
             dispatch(gameWasWon());
         }
     };
-
    
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -48,6 +47,14 @@ export default function Gameboard() {
     'twenty eight', 'twenty nine', 'thirty'];
     const grammar = '#JSGF V1.0; grammar numbers; public <number> = ' + numbers.join(' | ') + ' ;'
     speechRecognitionList.addFromString(grammar, 5);
+
+    useEffect(() => {
+        console.log('mounted');
+        return () => {
+            console.log('unmounting...');
+            recognition.abort();
+        }
+      }, [])
 
     useEffect(() => {
         (async () => {
@@ -109,7 +116,6 @@ export default function Gameboard() {
         if(!currentSquare) {
             return;
         }
-        
         for(let key in valid) {
             if (words.includes(key)) {
                 dispatch(squareSelected(valid[key]-1));
@@ -136,26 +142,28 @@ export default function Gameboard() {
     }
 
     return (
-        <div id="game-grid">
-            {squares.map((square, index) => 
-                <div className={square.selected ? "box selected " : "box"} key={square.id} id={`square-${square.id}`}>
-                    <span className="yellow">{index + 1}</span>
-                    <span className={square.correct ? "red correct" : "red"}>
-                        <img src={square.url} />
-                    </span>
-                </div>
-            )}
-            {welcomeVisible &&
-                <WelcomeModal />
-            }
-            {gameWon && 
-                <WinnerModal />
-            }
-            {modalIsVisible && 
-                <Modal 
-                    currentSquare = {currentSquare}
-                />
-            }
-        </div>
+        <React.Fragment>
+            <div id="game-grid">
+                {squares.map((square, index) => 
+                    <div className={square.selected ? "box selected " : "box"} key={square.id} id={`square-${square.id}`}>
+                        <span className="yellow">{index + 1}</span>
+                        <span className={square.correct ? "red correct" : "red"}>
+                            <img src={square.url} />
+                        </span>
+                    </div>
+                )}
+                {welcomeVisible &&
+                    <WelcomeModal />
+                }
+                {gameWon && 
+                    <WinnerModal />
+                }
+                {modalIsVisible && 
+                    <Modal 
+                        currentSquare = {currentSquare}
+                    />
+                }
+            </div>
+        </React.Fragment>
     )
 }

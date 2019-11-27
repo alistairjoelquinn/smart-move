@@ -8,15 +8,11 @@ export default function DrawBox() {
     document.body.clientWidth;
     const height = window.innerHeight|| document.documentElement.clientHeight|| 
     document.body.clientHeight;
-    console.log("width: ", width, " height: ", height);
 
     const setup = () => {
         canvasBox = document.querySelector('#sigbox');
     };
     const draw = (e) => {
-        console.log("client X: ", e.clientX);
-        console.log("offsetleft: ", canvasBox.offsetLeft);
-        console.log(setX, setY);
         if(e.buttons != 1) return;
         c.strokeStyle = '#0c00f9';
         c.lineWidth = 4;
