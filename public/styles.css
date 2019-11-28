@@ -331,7 +331,7 @@ canvas {
     background-color: white;
     border-radius: 10px;
     color: black;
-    /* margin-top: 40px; */
+    height: 20vh;
 }
 
 #done-container {
@@ -349,7 +349,7 @@ canvas {
     line-height: 30px;
     border: 1px solid black;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 3vh;
     align-self: center;
 }
 

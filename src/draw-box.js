@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 
 export default function DrawBox() {
     let canvasBox;
+    let boundingBox;
     let c;
     let setX, setY;
+    window.addEventListener('resize', resize);
     const width  = window.innerWidth || document.documentElement.clientWidth || 
     document.body.clientWidth;
     const height = window.innerHeight|| document.documentElement.clientHeight|| 
@@ -11,6 +13,10 @@ export default function DrawBox() {
 
     const setup = () => {
         canvasBox = document.querySelector('#sigbox');
+    };
+    const resize = () => {
+        canvasBox.width = boundingBox.width;
+        canvasBox.height = boundingBox.height;
     };
     const draw = (e) => {
         if(e.buttons != 1) return;
@@ -32,6 +38,10 @@ export default function DrawBox() {
             await setup();
         })();
         c = canvasBox.getContext('2d');
+        boundingBox = canvasBox.getBoundingClientRect();
+        console.log("boundingBox: ", boundingBox);
+        resize();
+        
         canvasBox.addEventListener('mousedown', updatePosition);
         canvasBox.addEventListener('mouseenter', updatePosition);
         canvasBox.addEventListener('mousemove', draw);
@@ -40,7 +50,7 @@ export default function DrawBox() {
 
     return (
         <React.Fragment>
-            <canvas id="sigbox" width={500} height={200} ></canvas>
+            <canvas id="sigbox"></canvas>
         </React.Fragment>
     )
 }
