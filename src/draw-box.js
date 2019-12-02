@@ -41,7 +41,6 @@ export default function DrawBox() {
         boundingBox = canvasBox.getBoundingClientRect();
         console.log("boundingBox: ", boundingBox);
         resize();
-        
         canvasBox.addEventListener('mousedown', updatePosition);
         canvasBox.addEventListener('mouseenter', updatePosition);
         canvasBox.addEventListener('mousemove', draw);

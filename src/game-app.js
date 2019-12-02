@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function GameApp() {
     return (
         <div> 
-            <Link id="teacher-link" to="/teacher-area">📝</Link> 
+            <Link id="teacher-link" to="/">📝</Link> 
             <div className="main-layout">
                 <div className="main-logo">
                     <p id="smart-move">smart move</p>

@@ -7,8 +7,8 @@ export default function App() {
     return (
         <React.Fragment>
             <HashRouter>
-                <Route exact path="/" component={GameApp} />
-                <Route exact path="/teacher-area" component={TeacherArea} />
+                <Route exact path="/" component={TeacherArea} />
+                <Route exact path="/game-app" component={GameApp} />
             </HashRouter>
        </React.Fragment>
     )

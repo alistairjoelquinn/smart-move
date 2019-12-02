@@ -8,15 +8,14 @@ export default class Register extends React.Component {
         this.state = {
         };
     }
+
     handleChange({ target }) {
         this.setState({
             [target.name]: target.value
         });
-        console.log(target.value);
-
     }
+
     submit() {
-        console.log(this.state.first, this.state.last);
         axios.post('/register', {
             first: this.state.first,
             last: this.state.last,
@@ -33,6 +32,7 @@ export default class Register extends React.Component {
                 });
             });
     }
+    
     render() {
         return (
             <div className="input-fields">
