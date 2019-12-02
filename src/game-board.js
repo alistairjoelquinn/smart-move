@@ -51,7 +51,7 @@ export default function Gameboard() {
     useEffect(() => {
         console.log('mounted');
         return () => {
-            console.log('unmounting...');
+            console.log('stopping voice rec on unmount');
             recognition.abort();
         }
       }, [])

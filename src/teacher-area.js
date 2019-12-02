@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Uploader from './uploader-modal'
 
 export default function TeacherArea() {
     return (
