@@ -15,7 +15,8 @@ export default function reducer(state = {}, action) {
             modalIsVisible: false,
             gameWon: false,
             welcomeVisible: false,
-            currentSquare: {}
+            currentSquare: {},
+            uploaderVisible: false
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -95,6 +96,11 @@ export default function reducer(state = {}, action) {
         return { 
             ...state, 
             currentSquare: action.current
+        }}
+    if (action.type == 'SHOW_UPLOADER') {
+        return { 
+            ...state, 
+            showUploader: true
         }}
 
     return state;

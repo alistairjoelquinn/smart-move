@@ -70,3 +70,9 @@ export async function setCurrentSquare(current) {
     };
 }
 
+export async function showTeacherUpload() {
+    return {
+        type: "SHOW_UPLOADER"
+    };
+}
+

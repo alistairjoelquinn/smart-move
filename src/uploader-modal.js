@@ -10,7 +10,6 @@ export default class Uploader extends Component {
     }
     componentDidMount() {
         console.log("uploader was mounted");
-        
     }
     fileSelected({ target }) {
         this.setState({
