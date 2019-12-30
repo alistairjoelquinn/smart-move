@@ -75,3 +75,13 @@ INSERT INTO images (name, url, modal1, modal2, audio1, audio2) VALUES ('them', '
 INSERT INTO images (name, url, modal1, modal2, audio1, audio2) VALUES ('mulch', 'https://smartmovetuition.s3.amazonaws.com/mulch.png', 'https://smartmovetuition.s3.amazonaws.com/modal1/mulch-modal1.png' , 'https://smartmovetuition.s3.amazonaws.com/modal2/mulch-modal2.png', 'https://smartmovetuition.s3.amazonaws.com/audio/mulch-1.wav', 'https://smartmovetuition.s3.amazonaws.com/audio/mulch-2.wav');
 INSERT INTO images (name, url, modal1, modal2, audio1, audio2) VALUES ('rat', 'https://smartmovetuition.s3.amazonaws.com/rat.png', 'https://smartmovetuition.s3.amazonaws.com/modal1/rat-modal1.png' , 'https://smartmovetuition.s3.amazonaws.com/modal2/rat-modal2.png', 'https://smartmovetuition.s3.amazonaws.com/audio/rat-1.wav', 'https://smartmovetuition.s3.amazonaws.com/audio/rat-2.wav');
 INSERT INTO images (name, url, modal1, modal2, audio1, audio2) VALUES ('splash', 'https://smartmovetuition.s3.amazonaws.com/splash.png', 'https://smartmovetuition.s3.amazonaws.com/modal1/splash-modal1.png' , 'https://smartmovetuition.s3.amazonaws.com/modal2/splash-modal2.png', 'https://smartmovetuition.s3.amazonaws.com/audio/splash-1.wav', 'https://smartmovetuition.s3.amazonaws.com/audio/splash-2.wav');
+
+CREATE TABLE images (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    url VARCHAR(255),
+    modal1 VARCHAR(255),
+    modal2 VARCHAR(255),
+    audio1 VARCHAR(255),
+    audio2 VARCHAR(255)
+);

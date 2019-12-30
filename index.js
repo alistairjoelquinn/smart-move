@@ -92,9 +92,9 @@ app.get('/init', (req, res) => {
     } while (numGen.length < 31);
     console.log("numgen: ", numGen);
     console.log("numgen length: ", numGen.length);
-    
     init(numGen).then(({ rows }) => {
         console.log("returned back from the database: ", rows.length);
+        console.log("rows are: ", rows);
         res.json(rows);
     }).catch(err => console.log(err));
 });

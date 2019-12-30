@@ -8,10 +8,16 @@ export default function Modal() {
     const currentSquare = useSelector(state => 
         state.currentSquare && state.currentSquare
     );
-    const audio = new Audio(currentSquare.audio);
+    const audio_intro = new Audio('https://smartmovetuition.s3.amazonaws.com/audio/bridge.aac');
+    const audio_1 = new Audio(currentSquare.audio1);
+    const audio_bridge = new Audio('https://smartmovetuition.s3.amazonaws.com/audio/intro.aac');
+    const audio_2 = new Audio(currentSquare.audio2);
 
     useEffect(() => {
-        audio.play();
+        audio_intro.play();
+        setTimeout(() => audio_1.play(), 3000);
+        setTimeout(() => audio_bridge.play(), 4000);
+        setTimeout(() => audio_2.play(), 6000);
     }, []);
 
     const closeBox = () => {
