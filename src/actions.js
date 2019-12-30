@@ -26,6 +26,18 @@ export async function squareCorrect(id) {
     };
 }
 
+export async function drawingComplete() {
+    return {
+        type: "DRAWING_COMPLETE"
+    };
+}
+
+export async function drawingReset() {
+    return {
+        type: "DRAWING_RESET"
+    };
+}
+
 export async function wordsUpdate(words) {
     return {
         type: "WORDS_UPDATE",

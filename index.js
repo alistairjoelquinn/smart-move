@@ -94,7 +94,6 @@ app.get('/init', (req, res) => {
     console.log("numgen length: ", numGen.length);
     init(numGen).then(({ rows }) => {
         console.log("returned back from the database: ", rows.length);
-        console.log("rows are: ", rows);
         res.json(rows);
     }).catch(err => console.log(err));
 });

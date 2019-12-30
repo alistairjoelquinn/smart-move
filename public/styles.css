@@ -304,7 +304,7 @@ img {
     top: 20vh;
     left: 20vw;
     right: 20vw;
-    bottom: 10vh;
+    bottom: 30vh;
     min-width: 520px;
     min-height: 150px;
     max-height: 70vh;
@@ -321,9 +321,8 @@ img {
         0 0 1px 5px rgb(255, 247, 236); 
 }
 
-.info-modal p {
-    margin-top: 40px;
-    font-size: 24px;
+.info-modal h1 {
+    padding-top: 30px;
 }
 
 canvas {
@@ -353,7 +352,28 @@ canvas {
     align-self: center;
 }
 
+#next {
+    font-size: 20px;
+    background-color:white;
+    color: dimgray;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 80px;
+    align-self: center;
+}
+
+#modal-part-2 {
+    padding-top: 60px;
+}
+
 #done:hover {
+    border: 1px solid tomato;
+}
+
+#next:hover {
     border: 1px solid tomato;
 }
 

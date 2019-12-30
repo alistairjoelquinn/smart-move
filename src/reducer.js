@@ -1,3 +1,5 @@
+import { drawingComplete } from "./actions"
+
 export default function reducer(state = {}, action) {
     if (action.type == 'GET_SQUARES') {
         return { 
@@ -16,7 +18,8 @@ export default function reducer(state = {}, action) {
             gameWon: false,
             welcomeVisible: false,
             currentSquare: {},
-            uploaderVisible: false
+            uploaderVisible: false,
+            drawingComplete: false
         }}
 
     if (action.type == 'SELECT_SQUARE') {
@@ -79,6 +82,18 @@ export default function reducer(state = {}, action) {
         welcomeVisible: false
     }}
 
+    if (action.type == 'DRAWING_COMPLETE') {
+    return { 
+        ...state, 
+        drawingComplete: true
+    }}
+
+    if (action.type == 'DRAWING_RESET') {
+    return { 
+        ...state, 
+        drawingComplete: false
+    }}
+
     if (action.type == 'CLOSE_MODAL') {
         return { 
             ...state, 
@@ -97,6 +112,7 @@ export default function reducer(state = {}, action) {
             ...state, 
             currentSquare: action.current
         }}
+
     if (action.type == 'SHOW_UPLOADER') {
         return { 
             ...state, 
