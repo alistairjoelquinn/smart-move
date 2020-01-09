@@ -70,9 +70,9 @@ app.post('/login', (req, res) => {
     let { email, password } = req.body;
     let id;
     getPassword(email)
-        .then(({ rows }) => {
-            let passStored = rows[0].password;
-            id = rows[0].id;
+    .then(({ rows }) => {
+        let passStored = rows[0].password;
+        id = rows[0].id;
             compare(password, passStored).then(valid => {
                 if(valid == true){
                     req.session.userId = id;

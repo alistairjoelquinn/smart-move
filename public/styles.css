@@ -593,3 +593,33 @@ canvas {
 	position: absolute;
 	z-index: -1;
 }
+
+@media screen and (max-width: 1000px) {
+    #game-grid {
+        grid-area: center;
+        display: grid;
+        grid-template: repeat(6, 80px) / repeat(6, 1fr);
+        gap: 20px;
+        background-color: dodgerblue;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #game-grid {
+        grid-area: center;
+        display: grid;
+        grid-template: repeat(7, 80px) / repeat(5, 1fr);
+        gap: 20px;
+        background-color: dodgerblue;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #game-grid {
+        grid-area: center;
+        display: grid;
+        grid-template: repeat(8, 80px) / repeat(4, 1fr);
+        gap: 20px;
+        background-color: dodgerblue;
+    }
+}
