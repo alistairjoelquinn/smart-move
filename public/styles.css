@@ -594,32 +594,34 @@ canvas {
 	z-index: -1;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 920px) {
     #game-grid {
         grid-area: center;
         display: grid;
-        grid-template: repeat(6, 80px) / repeat(6, 1fr);
-        gap: 20px;
+        grid-template: repeat(6, 80px) / repeat(5, 1fr);
+        gap: 30px;
         background-color: dodgerblue;
     }
-}
-
-@media screen and (max-width: 800px) {
-    #game-grid {
-        grid-area: center;
-        display: grid;
-        grid-template: repeat(7, 80px) / repeat(5, 1fr);
-        gap: 20px;
-        background-color: dodgerblue;
+    .main-layout {
+        grid-template-columns: 1fr 7fr 1fr;     
     }
+    .sidebar-left {
+        font-size: 50px;
+        transform: translateY(100px);
+    }
+    .sidebar-right {
+        font-size: 50px;
+        transform: translateY(100px);
+    }
+
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
     #game-grid {
         grid-area: center;
         display: grid;
-        grid-template: repeat(8, 80px) / repeat(4, 1fr);
-        gap: 20px;
+        grid-template: repeat(8, 80px) / repeat(3, 1fr);
+        gap: 30px;
         background-color: dodgerblue;
     }
 }
