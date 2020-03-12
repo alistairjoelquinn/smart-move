@@ -77,10 +77,8 @@ export default function Gameboard() {
             recognition.start();
 
             const gridSquares = document.querySelectorAll('.box');
-            console.log("grid squares: ", gridSquares);
             for(var y = 0; y < gridSquares.length; y++) {
                 gridSquares[y].addEventListener('touchstart', (e) => {
-                    console.log("touch happened: ", e.target.innerText);
                     dispatch(squareSelected(e.target.innerText - 1));
                 });
             }
